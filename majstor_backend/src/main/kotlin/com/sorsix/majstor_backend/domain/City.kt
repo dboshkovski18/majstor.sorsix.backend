@@ -1,5 +1,7 @@
 package com.sorsix.majstor_backend.domain
 
+import org.hibernate.annotations.OnDelete
+import org.hibernate.annotations.OnDeleteAction
 import javax.persistence.*
 
 @Entity
@@ -7,7 +9,8 @@ import javax.persistence.*
 data class City(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
     val id: Int,
 
-    val name: String
+    val name: String,
 )
