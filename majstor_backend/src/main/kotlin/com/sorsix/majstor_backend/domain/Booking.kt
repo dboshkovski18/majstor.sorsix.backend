@@ -9,11 +9,12 @@ import javax.persistence.*
 data class Booking(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     val date: LocalDateTime,
 
-    @ManyToOne()
-    val master: Master
+    val master: Long,
+
+    val client: Long
 
 )

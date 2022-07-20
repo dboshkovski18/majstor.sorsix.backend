@@ -12,13 +12,15 @@ import javax.persistence.*
 data class Master(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     val name: String,
 
     val surname: String,
 
-    val phone_number: Int,
+    val phone_number: String,
+
+    val email: String,
 
     val embg: Long,
 

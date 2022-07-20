@@ -1,11 +1,83 @@
 package com.sorsix.majstor_backend.service
 
+import com.sorsix.majstor_backend.domain.City
 import com.sorsix.majstor_backend.domain.Master
+import com.sorsix.majstor_backend.domain.MasterCity
+import com.sorsix.majstor_backend.domain.dtos.MasterDto
+import com.sorsix.majstor_backend.domain.enum.Gender
+import com.sorsix.majstor_backend.domain.enum.MasterType
+import com.sorsix.majstor_backend.repository.CityRepo
 import com.sorsix.majstor_backend.repository.MasterRepo
+import com.sorsix.majstor_backend.repository.MasterCityRepo
 import org.springframework.stereotype.Service
 
 @Service
-class MasterService(val repo: MasterRepo) {
+class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCityRepo, val cityRepo: CityRepo) {
 
-    fun listAllMasters(): List<Master> = repo.findAll()
+    fun listAllMasters(): List<Master> = masterRepo.findAll()
+
+    fun getMaster(id: Long): Master? {
+        if (masterRepo.existsById(id)) {
+            return masterRepo.findById(id).get()
+        }
+        return null
+    }
+
+    fun saveMaster(
+        masterDto: MasterDto
+    ): Master {
+
+
+        val master: Master = masterRepo.save(
+            Master(
+                name = masterDto.name,
+                surname = masterDto.surname,
+                phone_number = masterDto.phone_number,
+                embg = masterDto.embg,
+                gender = Gender.valueOf(masterDto.gender),
+                rating = masterDto.rating,
+                type = MasterType.valueOf(masterDto.type),
+                email = masterDto.email
+            )
+        )
+
+        val city : City = cityRepo.findById(masterDto.city).get()
+
+        master_city_repo.save(MasterCity(master = master.id,city = city.id))
+
+        return master
+    }
+
+    fun editMaster(
+        id: Long, masterDto: MasterDto
+    ): Master {
+        if (masterRepo.existsById(id)) {
+            masterRepo.deleteById(id)
+        }
+
+        val master: Master = masterRepo.save(
+            Master(
+                name = masterDto.name,
+                surname = masterDto.surname,
+                phone_number = masterDto.phone_number,
+                embg = masterDto.embg,
+                gender = Gender.valueOf(masterDto.gender),
+                rating = masterDto.rating,
+                type = MasterType.valueOf(masterDto.type),
+                email = masterDto.email
+            )
+        )
+
+        val city : City = cityRepo.findById(masterDto.city).get()
+
+        master_city_repo.save(MasterCity(master = master.id,city = city.id))
+
+        return master
+    }
+
+    fun deleteMaster(id: Long) {
+        if (masterRepo.existsById(id)) {
+            masterRepo.deleteById(id)
+        }
+    }
 }

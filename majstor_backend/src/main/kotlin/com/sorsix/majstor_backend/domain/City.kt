@@ -10,7 +10,7 @@ data class City(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
-    val id: Int,
+    val id: Long,
 
     val name: String,
 )

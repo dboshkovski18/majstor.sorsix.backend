@@ -4,15 +4,15 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "masters_cities")
-data class Master_City(
+data class MasterCity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
-    @OneToOne
-    val master_id: Master,
 
-    @OneToOne
-    val city_id: City
+    val master: Long,
+
+
+    val city: Long
 
 )
