@@ -10,8 +10,6 @@ data class MasterDto(val name: String,
 
                      val gender: String,
 
-                     val rating: Float,
-
                      val type: String,
 
                      val city: Long,

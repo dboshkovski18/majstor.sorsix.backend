@@ -35,7 +35,6 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
                 phone_number = masterDto.phone_number,
                 embg = masterDto.embg,
                 gender = Gender.valueOf(masterDto.gender),
-                rating = masterDto.rating,
                 type = MasterType.valueOf(masterDto.type),
                 email = masterDto.email
             )
@@ -62,7 +61,6 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
                 phone_number = masterDto.phone_number,
                 embg = masterDto.embg,
                 gender = Gender.valueOf(masterDto.gender),
-                rating = masterDto.rating,
                 type = MasterType.valueOf(masterDto.type),
                 email = masterDto.email
             )

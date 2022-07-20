@@ -12,7 +12,6 @@ CREATE TABLE if not exists masters
     phone_number text,
     embg         int,
     gender       text,
-    rating       float,
     type         text,
     email        text
 );
@@ -46,8 +45,8 @@ CREATE TABLE if not exists clients
 
 CREATE TABLE if not exists bookings
 (
-    id        bigserial primary key,
-    date      date,
+    id     bigserial primary key,
+    date   date,
     master bigserial,
     client bigserial,
     constraint pk_master

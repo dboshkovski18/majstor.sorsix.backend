@@ -37,4 +37,6 @@ class MasterController(val master_service: MasterService, val master_city_servic
         return master_city_service.listMastersByCity(id)
     }
 
+
+
 }

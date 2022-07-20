@@ -1,13 +1,16 @@
 package com.sorsix.majstor_backend.web
 
 import com.sorsix.majstor_backend.domain.Client
+import com.sorsix.majstor_backend.domain.MasterRating
 import com.sorsix.majstor_backend.domain.dtos.ClientDto
+import com.sorsix.majstor_backend.domain.dtos.MasterRatingDto
 import com.sorsix.majstor_backend.service.ClientService
+import com.sorsix.majstor_backend.service.MasterRatingService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/clients")
-class ClientController(val client_service: ClientService){
+class ClientController(val client_service: ClientService, val master_rating_service: MasterRatingService){
 
 
     @GetMapping
@@ -28,4 +31,9 @@ class ClientController(val client_service: ClientService){
 
     @DeleteMapping("/delete/{id}")
     fun deleteClient(@PathVariable id: Long) = client_service.deleteClient(id)
+
+    @PostMapping("/rate")
+    fun rateMaster(@RequestBody rateDto: MasterRatingDto): MasterRating{
+        return master_rating_service.rate(rateDto)
+    }
 }

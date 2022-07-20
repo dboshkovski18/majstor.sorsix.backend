@@ -27,8 +27,6 @@ data class Master(
     @Enumerated(value = EnumType.STRING)
     val gender: Gender,
 
-    val rating: Float,
-
     @Enumerated(value = EnumType.STRING)
     val type: MasterType
 
