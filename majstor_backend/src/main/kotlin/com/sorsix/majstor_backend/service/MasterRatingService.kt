@@ -26,4 +26,12 @@ class MasterRatingService(
         )
     }
 
+    fun getRecommendationsByMaster(master_id: Long): Int{
+        return master_rating_repo.countAllByMaster_IdAndRecommendation(master_id, Recommendation.RECOMMENDED)
+    }
+
+    fun checkIfMasterRatedByClient(client_id: Long, master_id: Long): Boolean{
+        return master_rating_repo.countAllByClient_IdAndMaster_Id(client_id,master_id) > 0
+    }
+
 }

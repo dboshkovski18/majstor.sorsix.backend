@@ -3,12 +3,17 @@ package com.sorsix.majstor_backend.web
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.dtos.MasterDto
 import com.sorsix.majstor_backend.service.MasterCityService
+import com.sorsix.majstor_backend.service.MasterRatingService
 import com.sorsix.majstor_backend.service.MasterService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/masters")
-class MasterController(val master_service: MasterService, val master_city_service: MasterCityService) {
+class MasterController(
+    val master_service: MasterService,
+    val master_city_service: MasterCityService,
+    val master_rating_service: MasterRatingService
+) {
 
     @GetMapping
     fun getAllMasters(): List<Master> = master_service.listAllMasters()
@@ -33,10 +38,14 @@ class MasterController(val master_service: MasterService, val master_city_servic
 
 
     @GetMapping("/fromCity/{id}")
-    fun listMastersByCity(@PathVariable id: Long): List<Master>{
+    fun listMastersByCity(@PathVariable id: Long): List<Master> {
         return master_city_service.listMastersByCity(id)
     }
 
+    @GetMapping("/recommendations/{id}")
+    fun getRecommendationsByMaster(@PathVariable id: Long): Int {
+        return master_rating_service.getRecommendationsByMaster(id)
+    }
 
 
 }

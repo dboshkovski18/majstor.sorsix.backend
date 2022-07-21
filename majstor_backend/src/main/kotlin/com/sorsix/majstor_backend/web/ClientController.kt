@@ -36,4 +36,9 @@ class ClientController(val client_service: ClientService, val master_rating_serv
     fun rateMaster(@RequestBody rateDto: MasterRatingDto): MasterRating{
         return master_rating_service.rate(rateDto)
     }
+
+    @GetMapping("/{client_id}/rated/{master_id}")
+    fun checkIfClientRatedMaster(@PathVariable client_id: Long, @PathVariable master_id: Long): Boolean{
+        return master_rating_service.checkIfMasterRatedByClient(client_id,master_id)
+    }
 }
