@@ -2,6 +2,7 @@ package com.sorsix.majstor_backend.web
 
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.dtos.MasterDto
+import com.sorsix.majstor_backend.domain.enum.MasterType
 import com.sorsix.majstor_backend.service.MasterCityService
 import com.sorsix.majstor_backend.service.MasterRatingService
 import com.sorsix.majstor_backend.service.MasterService
@@ -47,6 +48,9 @@ class MasterController(
     fun getRecommendationsByMaster(@PathVariable id: Long): Int {
         return master_rating_service.getRecommendationsByMaster(id)
     }
+
+    @GetMapping("/types")
+    fun getMasterTypes(): List<MasterType> = MasterType.values().toList()
 
 
 }

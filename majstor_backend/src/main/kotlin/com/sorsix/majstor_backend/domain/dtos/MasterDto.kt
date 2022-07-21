@@ -1,18 +1,19 @@
 package com.sorsix.majstor_backend.domain.dtos
 
-data class MasterDto(val name: String,
+data class MasterDto(
+    val name: String,
 
-                     val surname: String,
+    val surname: String,
 
-                     val phone_number: String,
+    val phone_number: String,
 
-                     val embg: Long,
+    val embg: Long,
 
-                     val gender: String,
+    val gender: String,
 
-                     val type: String,
+    val type: String,
 
-                     val city: Long,
+    val city: Long,
 
-                     val email: String
+    val email: String
 )
