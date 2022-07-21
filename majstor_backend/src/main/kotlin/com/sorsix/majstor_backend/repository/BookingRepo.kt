@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface BookingRepo : JpaRepository<Booking, Long> {
 
-    fun getBookingsByMaster(master: Long): List<Booking>
-    fun getBookingsByClient(client: Long): List<Booking>
+    fun getBookingsByMasterId(id : Long) : List<Booking>
+
+    fun getBookingsByClientId(id : Long) : List<Booking>
+
 }

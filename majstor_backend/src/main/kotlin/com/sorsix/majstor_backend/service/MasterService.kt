@@ -42,7 +42,7 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
 
         val city : City = cityRepo.findById(masterDto.city).get()
 
-        master_city_repo.save(MasterCity(master = master.id,city = city.id))
+        master_city_repo.save(MasterCity(master = master,city = city))
 
         return master
     }
@@ -68,7 +68,7 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
 
         val city : City = cityRepo.findById(masterDto.city).get()
 
-        master_city_repo.save(MasterCity(master = master.id,city = city.id))
+        master_city_repo.save(MasterCity(master = master,city = city))
 
         return master
     }

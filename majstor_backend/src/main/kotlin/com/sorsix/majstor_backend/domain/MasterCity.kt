@@ -9,10 +9,12 @@ data class MasterCity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
+    @OneToOne
+    @JoinColumn(name = "master_id")
+    val master: Master,
 
-    val master: Long,
-
-
-    val city: Long
+    @OneToOne
+    @JoinColumn(name = "city_id")
+    val city: City
 
 )

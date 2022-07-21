@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service
 @Service
 class MasterCityService (val masterCityRepo: MasterCityRepo, val masterRepo: MasterRepo){
 
-    fun listMastersByCity(city: Long): List<Master>{
-        val cities :List<MasterCity> = masterCityRepo.getMasterCitiesByCity(city)
+    fun listMastersByCity(city: Long): List<Master> {
+        val masters_cities: List<MasterCity> = masterCityRepo.getMasterCitiesByCityId(city)
 
-        val masters : List<Master> = masterRepo.findAllById(cities.map { it.master }.toList())
-
-        return masters
+        return masterRepo.findAllById(masters_cities.map { it.master.id }.toList())
     }
 }

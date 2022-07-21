@@ -19,14 +19,14 @@ CREATE TABLE if not exists masters
 CREATE TABLE masters_cities
 (
     id     bigserial primary key,
-    master bigserial,
-    city   bigserial,
+    master_id bigserial,
+    city_id   bigserial,
     constraint master_fk
-        foreign key (master) references masters (id)
+        foreign key (master_id) references masters (id)
             on delete CASCADE
             on update CASCADE,
     constraint city_fk
-        foreign key (city) references cities (city_id)
+        foreign key (city_id) references cities (city_id)
             on delete CASCADE
             on update CASCADE
 
@@ -47,12 +47,12 @@ CREATE TABLE if not exists bookings
 (
     id     bigserial primary key,
     date   date,
-    master bigserial,
-    client bigserial,
+    master_id bigserial,
+    client_id bigserial,
     constraint pk_master
-        foreign key (master)
+        foreign key (master_id)
             references masters (id),
     constraint pk_client
-        foreign key (client)
+        foreign key (client_id)
             references clients (id)
 );

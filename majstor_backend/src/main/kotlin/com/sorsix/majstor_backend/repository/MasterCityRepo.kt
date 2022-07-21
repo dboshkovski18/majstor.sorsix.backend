@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface MasterCityRepo: JpaRepository<MasterCity, Long> {
 
-    fun getMasterCitiesByCity(city: Long): List<MasterCity>
+    fun getMasterCitiesByCityId(city: Long): List<MasterCity>
 
 }

@@ -13,7 +13,11 @@ data class MasterRating (
     @Enumerated(value = EnumType.STRING)
     val recommendation: Recommendation,
 
-    val client: Long,
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    val client: Client,
 
-    val master: Long
-        )
+    @OneToOne
+    @JoinColumn(name = "master_id")
+    val master: Master
+    )

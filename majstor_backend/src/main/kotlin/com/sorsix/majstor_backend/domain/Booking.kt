@@ -13,8 +13,12 @@ data class Booking(
 
     val date: LocalDateTime,
 
-    val master: Long,
+    @OneToOne
+    @JoinColumn(name = "master_id")
+    val master: Master,
 
-    val client: Long
+    @OneToOne
+    @JoinColumn(name="client_id")
+    val client: Client
 
 )
