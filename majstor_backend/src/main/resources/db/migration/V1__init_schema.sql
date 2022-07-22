@@ -51,7 +51,7 @@ CREATE TABLE if not exists bookings
     client_id bigserial,
     constraint pk_master
         foreign key (master_id)
-            references masters (id),
+            references masters (id) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint pk_client
         foreign key (client_id)
             references clients (id)

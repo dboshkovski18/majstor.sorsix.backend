@@ -32,6 +32,7 @@ class MasterController(
 
     @PutMapping("/edit/{id}")
     fun editAMaster(@PathVariable id: Long, @RequestBody masterDto: MasterDto): Master {
+        println(id)
         return master_service.editMaster(id, masterDto)
     }
 
