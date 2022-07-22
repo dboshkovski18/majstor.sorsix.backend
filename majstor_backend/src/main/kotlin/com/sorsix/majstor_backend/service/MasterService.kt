@@ -49,28 +49,29 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
 
     fun editMaster(
         id: Long, masterDto: MasterDto
-    ): Master {
+    ): Any {
         if (masterRepo.existsById(id)) {
             masterRepo.deleteById(id)
-        }
 
-        val master: Master = masterRepo.save(
-            Master(
-                name = masterDto.name,
-                surname = masterDto.surname,
-                phone_number = masterDto.phone_number,
-                embg = masterDto.embg,
-                gender = Gender.valueOf(masterDto.gender),
-                type = MasterType.valueOf(masterDto.type),
-                email = masterDto.email
+            val master: Master = masterRepo.save(
+                Master(
+                    name = masterDto.name,
+                    surname = masterDto.surname,
+                    phone_number = masterDto.phone_number,
+                    embg = masterDto.embg,
+                    gender = Gender.valueOf(masterDto.gender),
+                    type = MasterType.valueOf(masterDto.type),
+                    email = masterDto.email
+                )
             )
-        )
 
-        val city: City = cityRepo.findById(masterDto.city).get()
+            val city: City = cityRepo.findById(masterDto.city).get()
 
-        master_city_repo.save(MasterCity(master = master, city = city))
+            master_city_repo.save(MasterCity(master = master, city = city))
 
-        return master
+            return master
+        }
+        return "error"
     }
 
     fun deleteMaster(id: Long) {
