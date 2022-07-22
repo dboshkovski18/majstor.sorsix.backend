@@ -40,9 +40,9 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
             )
         )
 
-        val city : City = cityRepo.findById(masterDto.city).get()
+        val city: City = cityRepo.findById(masterDto.city).get()
 
-        master_city_repo.save(MasterCity(master = master,city = city))
+        master_city_repo.save(MasterCity(master = master, city = city))
 
         return master
     }
@@ -66,9 +66,9 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
             )
         )
 
-        val city : City = cityRepo.findById(masterDto.city).get()
+        val city: City = cityRepo.findById(masterDto.city).get()
 
-        master_city_repo.save(MasterCity(master = master,city = city))
+        master_city_repo.save(MasterCity(master = master, city = city))
 
         return master
     }
@@ -77,5 +77,11 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
         if (masterRepo.existsById(id)) {
             masterRepo.deleteById(id)
         }
+    }
+
+    fun filterMasters(city_id: Long, master_type: String): List<Master> {
+        val master_cities: List<MasterCity> = master_city_repo.getMasterCitiesByCityId(city_id)
+        val masters : List<Master> = masterRepo.findAllById(master_cities.map { it.master.id }.toList())
+        return masters.filter { it.type.name == master_type }
     }
 }

@@ -14,4 +14,5 @@ class CityController(val city_service: CityService){
 
     @GetMapping("/{id}")
     fun getCityById(@PathVariable id: Long): City?= city_service.getCity(id)
+
 }

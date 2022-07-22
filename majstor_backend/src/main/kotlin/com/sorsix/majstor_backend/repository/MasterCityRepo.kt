@@ -9,4 +9,5 @@ interface MasterCityRepo: JpaRepository<MasterCity, Long> {
 
     fun getMasterCitiesByCityId(city: Long): List<MasterCity>
 
+
 }
