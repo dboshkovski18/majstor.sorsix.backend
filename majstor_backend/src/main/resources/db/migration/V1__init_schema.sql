@@ -13,7 +13,8 @@ CREATE TABLE if not exists masters
     embg         int,
     gender       text,
     type         text,
-    email        text
+    email        text,
+    status       text default 'PENDING'
 );
 
 CREATE TABLE masters_cities

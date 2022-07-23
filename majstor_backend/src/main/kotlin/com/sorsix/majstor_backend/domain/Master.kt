@@ -1,6 +1,7 @@
 package com.sorsix.majstor_backend.domain
 
 import com.sorsix.majstor_backend.domain.enum.Gender
+import com.sorsix.majstor_backend.domain.enum.MasterStatus
 import com.sorsix.majstor_backend.domain.enum.MasterType
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
@@ -28,6 +29,9 @@ data class Master(
     val gender: Gender,
 
     @Enumerated(value = EnumType.STRING)
-    val type: MasterType
+    val type: MasterType,
+
+    @Enumerated(value = EnumType.STRING)
+    var status: MasterStatus
 
 )

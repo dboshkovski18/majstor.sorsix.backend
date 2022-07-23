@@ -1,5 +1,6 @@
 package com.sorsix.majstor_backend.service
 
+import com.sorsix.majstor_backend.domain.City
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.MasterCity
 import com.sorsix.majstor_backend.repository.MasterCityRepo
@@ -13,5 +14,9 @@ class MasterCityService (val masterCityRepo: MasterCityRepo, val masterRepo: Mas
         val masters_cities: List<MasterCity> = masterCityRepo.getMasterCitiesByCityId(city)
 
         return masterRepo.findAllById(masters_cities.map { it.master.id }.toList())
+    }
+
+    fun getCitiesByMaster(id: Long): List<City>{
+        return masterCityRepo.getMasterCitiesByMaster_Id(id).map { it.city }
     }
 }

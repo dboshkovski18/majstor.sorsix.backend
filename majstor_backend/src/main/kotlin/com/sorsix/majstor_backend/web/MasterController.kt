@@ -1,5 +1,6 @@
 package com.sorsix.majstor_backend.web
 
+import com.sorsix.majstor_backend.domain.City
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.dtos.MasterDto
 import com.sorsix.majstor_backend.domain.enum.MasterType
@@ -19,6 +20,9 @@ class MasterController(
 
     @GetMapping
     fun getAllMasters(): List<Master> = master_service.listAllMasters()
+
+    @GetMapping("/approved")
+    fun getApprovedMasters(): List<Master> = master_service.listAllApprovedMasters()
 
     @GetMapping("/{id}")
     fun getAMaster(@PathVariable id: Long): Master? {
@@ -61,5 +65,13 @@ class MasterController(
         return master_service.filterMasters(city_id,master_type)
     }
 
+    @GetMapping("/approve/{id}")
+    fun approveMaster(@PathVariable id: Long): Master? = master_service.approveMaster(id)
+
+    @GetMapping("/disapprove/{id}")
+    fun disapproveMaster(@PathVariable id: Long): Master? = master_service.disapproveMaster(id)
+
+    @GetMapping("{id}/city")
+    fun getCitiesOfMaster(@PathVariable id: Long): List<City> = master_city_service.getCitiesByMaster(id)
 
 }
