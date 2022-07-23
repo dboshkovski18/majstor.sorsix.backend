@@ -12,6 +12,8 @@ import com.sorsix.majstor_backend.repository.MasterRepo
 import com.sorsix.majstor_backend.repository.MasterCityRepo
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 
 @Service
 class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCityRepo, val cityRepo: CityRepo) {
@@ -56,26 +58,24 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
         id: Long, masterDto: MasterDto
     ): Any {
         if (masterRepo.existsById(id)) {
-            masterRepo.deleteById(id)
+            val master: Master? = masterRepo.findByIdOrNull(id)
 
-            val master: Master = masterRepo.save(
-                Master(
-                    name = masterDto.name,
-                    surname = masterDto.surname,
-                    phone_number = masterDto.phone_number,
-                    embg = masterDto.embg,
-                    gender = Gender.valueOf(masterDto.gender),
-                    type = MasterType.valueOf(masterDto.type),
-                    email = masterDto.email,
-                    status = MasterStatus.PENDING
-                )
-            )
 
-            val city: City = cityRepo.findById(masterDto.city).get()
+            master?.let {
+                master.name = masterDto.name
+                master.surname = masterDto.surname
+                master.phone_number = masterDto.phone_number
+                master.email = masterDto.email
+                master.embg = masterDto.embg
+                master.gender = Gender.valueOf(masterDto.gender)
+                master.type = MasterType.valueOf(masterDto.type)
+                master.status = MasterStatus.PENDING
 
-            master_city_repo.save(MasterCity(master = master, city = city))
+                return masterRepo.save(master)
+            }
 
-            return master
+
+
         }
         return "error"
     }
@@ -92,7 +92,7 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
         return masters.filter { it.type.name == master_type && it.status == MasterStatus.APPROVED }
     }
 
-    fun approveMaster(id: Long) : Master?{
+    fun approveMaster(id: Long): Master? {
 
         val master: Master? = masterRepo.findByIdOrNull(id)
         master?.status = MasterStatus.APPROVED
@@ -105,7 +105,7 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
         return master
     }
 
-    fun disapproveMaster(id: Long) : Master?{
+    fun disapproveMaster(id: Long): Master? {
 
         val master: Master? = masterRepo.findByIdOrNull(id)
         master?.status = MasterStatus.PENDING

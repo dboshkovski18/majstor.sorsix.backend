@@ -15,21 +15,21 @@ data class Master(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    val name: String,
+    var name: String,
 
-    val surname: String,
+    var surname: String,
 
-    val phone_number: String,
+    var phone_number: String,
 
-    val email: String,
+    var email: String,
 
-    val embg: Long,
-
-    @Enumerated(value = EnumType.STRING)
-    val gender: Gender,
+    var embg: Long,
 
     @Enumerated(value = EnumType.STRING)
-    val type: MasterType,
+    var gender: Gender,
+
+    @Enumerated(value = EnumType.STRING)
+    var type: MasterType,
 
     @Enumerated(value = EnumType.STRING)
     var status: MasterStatus
