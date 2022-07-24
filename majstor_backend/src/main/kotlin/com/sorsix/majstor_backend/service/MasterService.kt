@@ -43,7 +43,8 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
                 gender = Gender.valueOf(masterDto.gender),
                 type = MasterType.valueOf(masterDto.type),
                 email = masterDto.email,
-                status = MasterStatus.PENDING
+                status = MasterStatus.PENDING,
+                city = cityRepo.findById(masterDto.city).get()
             )
         )
 
@@ -70,6 +71,7 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
                 master.gender = Gender.valueOf(masterDto.gender)
                 master.type = MasterType.valueOf(masterDto.type)
                 master.status = MasterStatus.PENDING
+                master.city = cityRepo.findById(masterDto.city).get()
 
                 return masterRepo.save(master)
             }
@@ -87,8 +89,8 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
     }
 
     fun filterMasters(city_id: Long, master_type: String): List<Master> {
-        val master_cities: List<MasterCity> = master_city_repo.getMasterCitiesByCityId(city_id)
-        val masters: List<Master> = masterRepo.findAllById(master_cities.map { it.master.id }.toList())
+//        val master_cities: List<MasterCity> = master_city_repo.getMasterCitiesByCityId(city_id)
+        val masters: List<Master> = masterRepo.findAllByCity(cityRepo.findById(city_id).get())
         return masters.filter { it.type.name == master_type && it.status == MasterStatus.APPROVED }
     }
 

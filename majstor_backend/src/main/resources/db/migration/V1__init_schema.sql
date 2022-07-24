@@ -14,24 +14,12 @@ CREATE TABLE if not exists masters
     gender       text,
     type         text,
     email        text,
-    status       text default 'PENDING'
-);
-
-CREATE TABLE masters_cities
-(
-    id     bigserial primary key,
-    master_id bigserial,
-    city_id   bigserial,
-    constraint master_fk
-        foreign key (master_id) references masters (id)
-            on delete CASCADE
-            on update CASCADE,
+    status       text default 'PENDING',
+    city_id      bigserial,
     constraint city_fk
-        foreign key (city_id) references cities (city_id)
-            on delete CASCADE
-            on update CASCADE
-
+            foreign key (city_id) references cities(city_id) on delete cascade
 );
+
 
 CREATE TABLE if not exists clients
 (

@@ -60,8 +60,6 @@ class MasterController(
 
     @GetMapping("/filter")
     fun filterMastersByProfessionAndCity(@RequestParam city_id: Long, @RequestParam master_type: String): List<Master> {
-        println(city_id)
-        println(master_type)
         return master_service.filterMasters(city_id,master_type)
     }
 

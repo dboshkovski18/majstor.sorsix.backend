@@ -32,6 +32,10 @@ data class Master(
     var type: MasterType,
 
     @Enumerated(value = EnumType.STRING)
-    var status: MasterStatus
+    var status: MasterStatus,
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    var city: City
 
 )
