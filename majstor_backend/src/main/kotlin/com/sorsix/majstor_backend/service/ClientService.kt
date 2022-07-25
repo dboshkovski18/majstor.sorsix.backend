@@ -1,9 +1,6 @@
 package com.sorsix.majstor_backend.service
 
-import com.sorsix.majstor_backend.domain.City
-import com.sorsix.majstor_backend.domain.Client
-import com.sorsix.majstor_backend.domain.Master
-import com.sorsix.majstor_backend.domain.MasterCity
+import com.sorsix.majstor_backend.domain.*
 import com.sorsix.majstor_backend.domain.dtos.ClientDto
 import com.sorsix.majstor_backend.domain.dtos.MasterDto
 import com.sorsix.majstor_backend.domain.enum.Gender
