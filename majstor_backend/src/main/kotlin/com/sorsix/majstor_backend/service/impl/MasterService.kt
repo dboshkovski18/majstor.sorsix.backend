@@ -116,4 +116,12 @@ class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCity
 
         return master
     }
+
+    fun searchMasterByName(query: String):List<Master>{
+        return if(query.isEmpty()){
+            masterRepo.findAll()
+        }else {
+            masterRepo.findAllByNameIsContaining(query)
+        }
+    }
 }

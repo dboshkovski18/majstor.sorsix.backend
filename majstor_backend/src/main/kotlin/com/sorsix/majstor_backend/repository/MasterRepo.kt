@@ -13,4 +13,6 @@ interface MasterRepo : JpaRepository<Master, Long> {
 
     fun findAllByCity(city_id: City): List<Master>
 
+    fun findAllByNameIsContaining(name: String): List<Master>
+
 }

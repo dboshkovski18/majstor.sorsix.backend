@@ -72,4 +72,9 @@ class MasterController(
     @GetMapping("{id}/city")
     fun getCitiesOfMaster(@PathVariable id: Long): List<City> = master_city_service.getCitiesByMaster(id)
 
+    @GetMapping("/search")
+    fun searchMastersByName(@RequestParam query: String):List<Master>{
+        return master_service.searchMasterByName(query)
+    }
+
 }
