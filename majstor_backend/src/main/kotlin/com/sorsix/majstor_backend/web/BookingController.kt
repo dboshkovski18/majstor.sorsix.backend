@@ -2,12 +2,11 @@ package com.sorsix.majstor_backend.web
 
 import com.sorsix.majstor_backend.domain.Booking
 import com.sorsix.majstor_backend.domain.dtos.BookingDto
-import com.sorsix.majstor_backend.service.BookingService
+import com.sorsix.majstor_backend.service.impl.BookingService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/bookings")
-@CrossOrigin("http://localhost:4200")
 class BookingController(val booking_service : BookingService) {
 
     @GetMapping

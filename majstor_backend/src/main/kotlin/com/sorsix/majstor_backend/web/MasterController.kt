@@ -4,14 +4,14 @@ import com.sorsix.majstor_backend.domain.City
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.dtos.MasterDto
 import com.sorsix.majstor_backend.domain.enum.MasterType
-import com.sorsix.majstor_backend.service.MasterCityService
-import com.sorsix.majstor_backend.service.MasterRatingService
-import com.sorsix.majstor_backend.service.MasterService
+import com.sorsix.majstor_backend.service.impl.MasterCityService
+import com.sorsix.majstor_backend.service.impl.MasterRatingService
+import com.sorsix.majstor_backend.service.impl.MasterService
 import org.springframework.web.bind.annotation.*
+import javax.annotation.security.RolesAllowed
 
 @RestController
 @RequestMapping("/api/masters")
-@CrossOrigin("http://localhost:4200")
 class MasterController(
     val master_service: MasterService,
     val master_city_service: MasterCityService,

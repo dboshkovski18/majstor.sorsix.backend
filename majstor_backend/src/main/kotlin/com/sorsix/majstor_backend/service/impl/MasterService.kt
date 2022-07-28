@@ -1,4 +1,4 @@
-package com.sorsix.majstor_backend.service
+package com.sorsix.majstor_backend.service.impl
 
 import com.sorsix.majstor_backend.domain.City
 import com.sorsix.majstor_backend.domain.Master
@@ -12,8 +12,6 @@ import com.sorsix.majstor_backend.repository.MasterRepo
 import com.sorsix.majstor_backend.repository.MasterCityRepo
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
 
 @Service
 class MasterService(val masterRepo: MasterRepo, val master_city_repo: MasterCityRepo, val cityRepo: CityRepo) {

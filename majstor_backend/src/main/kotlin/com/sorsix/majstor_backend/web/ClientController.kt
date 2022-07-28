@@ -4,13 +4,12 @@ import com.sorsix.majstor_backend.domain.Client
 import com.sorsix.majstor_backend.domain.MasterRating
 import com.sorsix.majstor_backend.domain.dtos.ClientDto
 import com.sorsix.majstor_backend.domain.dtos.MasterRatingDto
-import com.sorsix.majstor_backend.service.ClientService
-import com.sorsix.majstor_backend.service.MasterRatingService
+import com.sorsix.majstor_backend.service.impl.ClientService
+import com.sorsix.majstor_backend.service.impl.MasterRatingService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/clients")
-@CrossOrigin("http://localhost:4200")
 class ClientController(val client_service: ClientService, val master_rating_service: MasterRatingService){
 
 

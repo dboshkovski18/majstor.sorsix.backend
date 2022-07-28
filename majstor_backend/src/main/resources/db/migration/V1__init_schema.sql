@@ -17,7 +17,7 @@ CREATE TABLE if not exists masters
     status       text default 'PENDING',
     city_id      bigserial,
     constraint city_fk
-            foreign key (city_id) references cities(city_id) on delete cascade
+        foreign key (city_id) references cities (city_id) on delete cascade
 );
 
 
@@ -34,8 +34,8 @@ CREATE TABLE if not exists clients
 
 CREATE TABLE if not exists bookings
 (
-    id     bigserial primary key,
-    date   date,
+    id        bigserial primary key,
+    date      date,
     master_id bigserial,
     client_id bigserial,
     constraint pk_master
@@ -43,5 +43,5 @@ CREATE TABLE if not exists bookings
             references masters (id) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint pk_client
         foreign key (client_id)
-            references clients (id)
+            references clients (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

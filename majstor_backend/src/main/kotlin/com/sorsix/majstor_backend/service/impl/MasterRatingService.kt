@@ -1,4 +1,4 @@
-package com.sorsix.majstor_backend.service
+package com.sorsix.majstor_backend.service.impl
 
 import com.sorsix.majstor_backend.domain.MasterRating
 import com.sorsix.majstor_backend.domain.dtos.MasterRatingDto
