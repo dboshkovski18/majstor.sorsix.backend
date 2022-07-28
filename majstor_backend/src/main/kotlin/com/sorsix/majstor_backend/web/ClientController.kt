@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/clients")
-@CrossOrigin("http://localhost:4200")
 class ClientController(val client_service: ClientService, val master_rating_service: MasterRatingService){
 
 

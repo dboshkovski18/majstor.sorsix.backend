@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/masters")
-@CrossOrigin("http://localhost:4200")
 class MasterController(
     val master_service: MasterService,
     val master_city_service: MasterCityService,

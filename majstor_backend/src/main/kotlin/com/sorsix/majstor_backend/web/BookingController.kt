@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/bookings")
-@CrossOrigin("http://localhost:4200")
 class BookingController(val booking_service : BookingService) {
 
     @GetMapping
