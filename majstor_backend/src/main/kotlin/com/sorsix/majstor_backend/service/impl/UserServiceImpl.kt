@@ -3,6 +3,7 @@ package com.sorsix.majstor_backend.service.impl
 import com.sorsix.majstor_backend.domain.Client
 import com.sorsix.majstor_backend.domain.Master
 import com.sorsix.majstor_backend.domain.User
+import com.sorsix.majstor_backend.domain.dtos.AdminDto
 import com.sorsix.majstor_backend.domain.dtos.ClientRegistrationDto
 import com.sorsix.majstor_backend.domain.dtos.MasterRegistrationDto
 import com.sorsix.majstor_backend.domain.enum.Gender
@@ -33,6 +34,7 @@ class UserServiceImpl(
     }
 
     override fun register(
+        adminDto: AdminDto?,
         masterRegistrationDto: MasterRegistrationDto?,
         clientRegistrationDto: ClientRegistrationDto?
     ): Any {
@@ -64,6 +66,12 @@ class UserServiceImpl(
                 )
             )
             return this.userRepo.save(User(username = it.username!!, password = passwordEncoder.encode(it.password), role = it.role!!,client=client))
+        }
+
+        adminDto.let{
+            if (it != null) {
+                return this.userRepo.save(User(username = it.username!!, password = passwordEncoder.encode(it.password), role = it.role!!))
+            }
         }
         return "error"
     }

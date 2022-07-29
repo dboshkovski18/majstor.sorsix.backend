@@ -24,7 +24,7 @@ class JWTWebSecurityConfig(
     override fun configure(http: HttpSecurity?) {
         http!!.cors().and().csrf().disable()
             .authorizeRequests()
-            .antMatchers("/registerMaster","/registerClient","/api/masters/approved").permitAll()
+            .antMatchers("/registerMaster","/registerAdmin","/registerClient","/api/masters/approved","/api/cities", "/api/masters/types","/api/masters/filter","/api/masters/recommendations/*").permitAll()
             .anyRequest()
             .authenticated()
             .and()

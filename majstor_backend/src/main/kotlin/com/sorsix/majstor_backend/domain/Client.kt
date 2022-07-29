@@ -10,12 +10,12 @@ data class Client(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    val name: String,
-    val surname: String,
-    val email: String,
-    val phone_number: String,
-    val address: String,
+    var name: String,
+    var surname: String,
+    var email: String,
+    var phone_number: String,
+    var address: String,
 
     @Enumerated(value = EnumType.STRING)
-    val gender: Gender
+    var gender: Gender
 )
