@@ -10,7 +10,7 @@ CREATE TABLE if not exists masters
     name         text,
     surname      text,
     phone_number text,
-    embg         int,
+    embg         bigint,
     gender       text,
     type         text,
     email        text,

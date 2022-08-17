@@ -26,7 +26,7 @@ class ClientController(val client_service: ClientService, val master_rating_serv
 
     @PutMapping("/edit/{id}")
     fun editClient(@PathVariable id: Long, @RequestBody clientDto: ClientDto): Any{
-        return client_service.editClient(id, clientDto)
+            return client_service.editClient(id, clientDto)
     }
 
     @DeleteMapping("/delete/{id}")
